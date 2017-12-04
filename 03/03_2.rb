@@ -2,11 +2,15 @@
 
 input = 289326
 
+# guess how many rings we need to generate large enough numbers to exceed our input
 $number_of_rings = 5
-n = 2 # We have 1 seeded to first cell so start from second one
+
+# We have 1 seeded to first cell so start from second one
+n = 2
 
 $matrix = Array.new(2*$number_of_rings+1).map { |a| Array.new(2*$number_of_rings+1,0) }
 
+# Seed initial cell
 $matrix[0][0] = 1
 
 def get_ring(n)
