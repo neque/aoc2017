@@ -2,12 +2,12 @@
 
 input = 289326
 
-$offset = 5
+$number_of_rings = 5
 n = 2 # We have 1 seeded to first cell so start from second one
 
-$matrix = Array.new(2*$offset+1).map { |a| Array.new(2*$offset+1,0) }
+$matrix = Array.new(2*$number_of_rings+1).map { |a| Array.new(2*$number_of_rings+1,0) }
 
-$matrix[$offset][$offset] = 1
+$matrix[0][0] = 1
 
 def get_ring(n)
   ring = 1
@@ -43,7 +43,7 @@ def calculate_coordinates(n, ring)
     x = 0 + modulo/2
   end
 
-  return [x+$offset,y+$offset]
+  return [x,y]
 end
 
 def calculate_value(n, x, y)
@@ -64,7 +64,7 @@ loop do
   x, y = calculate_coordinates(n, ring)
   value = calculate_value(n, x, y)
   $matrix[x][y] = value
-  #p "(#{x-$offset},#{y-$offset}) #{value}"
+  #p "(#{x},#{y}) #{value}"
   if value > input
     p value
     break
